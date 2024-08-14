@@ -1,0 +1,189 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+header {
+    background-color: #35424a;
+    color: white;
+    padding: 10px 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+#destinosContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+}
+
+.destino-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    width: 300px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.destino-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.destino-card h3 {
+    margin: 15px;
+}
+
+.destino-card p {
+    margin: 0 15px 15px;
+    text-align: left;
+}
+
+.destino-card button {
+    background-color: #35424a;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.destino-card button:hover {
+    background-color: #2a383f;
+}
+
+#reservaSection, #carritoSection {
+    margin: 20px;
+}
+
+#reservaSection img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+}
+
+form label, form input {
+    margin: 10px 0;
+}
+
+form button {
+    background-color: #35424a;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #2a383f;
+}
+
+#carritoItems {
+    list-style: none;
+    padding: 0;
+}
+
+#carritoItems li {
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#carritoSection {
+    display: none;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+#carritoSection h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#carritoItems {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#carritoItems li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#carritoItems li button {
+    background-color: #dc3545;
+}
+
+#carritoItems li button:hover {
+    background-color: #c82333;
+}
+
+#totalCosto {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 20px;
+}
+
+#carritoSection button {
+    margin: 10px 5px;
+    width: 100%;
+}
+
+#cerrarCarrito {
+    background-color: #6c757d;
+}
+
+#cerrarCarrito:hover {
+    background-color: #5a6268;
+}
+
+#vaciarCarrito {
+    background-color: #dc3545;
+}
+
+#vaciarCarrito:hover {
+    background-color: #c82333;
+}

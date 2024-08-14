@@ -3,19 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Adventures</title>
-        <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-      </head>
+    <title>Agencia de Viajes</title>
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <header>
+        <h1>Agencia de Viajes</h1>
+        <button id="verCarrito" style="display:none;">Ver Carrito</button>
+    </header>
 
-  <div class="container">
-    <h1>Calculadora de Viajes</h1>
-    <button id="btnIniciar"><i class="fas fa-calculator"></i> Iniciar Cotización</button>
-    <button id="btnVerCarrito"><i class="fas fa-shopping-cart"></i> Ver Carrito</button>
-  </div>
+    <main id="destinosContainer"></main>
 
-  <script src="/js/main.js"></script>
+    <section id="reservaSection" style="display:none;">
+        <form id="reservaForm">
+            <img id="reservaImagen" src="" alt="Destino">
+            <h2 id="reservaDestino"></h2>
+            <p id="reservaPrecio"></p>
+            <p id="reservaTotal"></p>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" required>
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <label for="pasajeros">Número de Pasajeros:</label>
+            <input type="number" id="pasajeros" required>
+            <button type="submit">Reservar</button>
+            <button type="button" id="volverAtras">Volver</button>
+        </form>
+    </section>
+
+    <section id="carritoSection" style="display:none;">
+        <h2>Carrito de Reservas</h2>
+        <ul id="carritoItems"></ul>
+        <p id="totalCosto"></p>
+        <button id="cerrarCarrito">Cerrar</button>
+        <button id="vaciarCarrito">Vaciar Carrito</button>
+    </section>
+
+    <script src="js/destinos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/carrito.js"></script>
 </body>
-</html> 
+</html>
