@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
 #destinosContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     margin: 20px;
 }
 
@@ -90,7 +90,6 @@ form button {
     color: white;
     border: none;
     padding: 10px;
-    margin: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -109,12 +108,13 @@ form button:hover {
 }
 
 button {
-    padding: 10px 15px;
+    padding: 10px 15px ;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 button:hover {

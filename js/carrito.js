@@ -3,18 +3,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const carritoSection = document.getElementById("carritoSection");
     const carritoItems = document.getElementById("carritoItems");
     const totalCosto = document.getElementById("totalCosto");
-    const destinosContainer = document.getElementById("destinosContainer");
-    const reservaSection = document.getElementById("reservaSection");
+    const vaciarCarritoBtn = document.getElementById("vaciarCarrito");
+    const cerrarCarritoBtn = document.getElementById("cerrarCarrito");
+    let destinos = [];
+
+    // Cargar destinos desde el JSON
+    fetch('data/destinos.json')
+        .then(response => response.json())
+        .then(data => {
+            destinos = data;
+            actualizarCarrito();
+        })
+        .catch(error => {
+            console.error('Error al cargar los destinos:', error);
+            Swal.fire('Error', 'No se pudieron cargar los destinos.', 'error');
+        });
 
     function ocultarElementos() {
-        destinosContainer.style.display = "none";
-        reservaSection.style.display = "none";
         carritoSection.style.display = "none";
     }
-
-    verCarritoBtn.addEventListener("click", () => {
-        mostrarCarrito();
-    });
 
     function mostrarCarrito() {
         ocultarElementos();
@@ -32,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         compradorNombre.textContent = `Nombre del Comprador: ${nombreComprador}`;
 
         if (reservas.length === 0) {
-            compradorNombre.style.display = "none"; 
+            compradorNombre.style.display = "none";
         } else {
             compradorNombre.style.display = "block";
         }
@@ -43,22 +50,26 @@ document.addEventListener("DOMContentLoaded", () => {
             const imagen = document.createElement("img");
             imagen.src = destinos.find(d => d.nombre === reserva.destino).imagen;
             imagen.alt = reserva.destino;
-            imagen.style.width = "50px"; 
+            imagen.style.width = "50px";
             imagen.style.height = "auto";
             imagen.style.marginRight = "10px";
-            
+
             item.appendChild(imagen);
             item.appendChild(document.createTextNode(`${reserva.destino} - ${reserva.pasajeros} pasajeros - $${reserva.precio * reserva.pasajeros}`));
             
-            const eliminarBtn = document.createElement("button");
-            eliminarBtn.textContent = "Eliminar";
-            eliminarBtn.addEventListener("click", () => eliminarReserva(index));
-            item.appendChild(eliminarBtn);
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Eliminar";
+            deleteBtn.addEventListener("click", () => {
+                eliminarReserva(index);
+            });
+
+            item.appendChild(deleteBtn);
             carritoItems.appendChild(item);
+
             total += reserva.precio * reserva.pasajeros;
         });
 
-        totalCosto.textContent = `Total: $${total}`;
+        totalCosto.textContent = `Total a Pagar: $${total}`;
         carritoSection.style.display = "block";
     }
 
@@ -68,23 +79,39 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("reservas", JSON.stringify(reservas));
         mostrarCarrito();
         actualizarCarrito();
+        Swal.fire('Eliminado', 'La reserva ha sido eliminada del carrito', 'info');
     }
 
-    document.getElementById("cerrarCarrito").addEventListener("click", () => {
-        carritoSection.style.display = "none";
-        destinosContainer.style.display = "flex";
-    });
-
-    document.getElementById("vaciarCarrito").addEventListener("click", () => {
+    function vaciarCarrito() {
         localStorage.removeItem("reservas");
         mostrarCarrito();
         actualizarCarrito();
-    });
+        Swal.fire('Carrito Vacío', 'El carrito ha sido vaciado', 'info');
+    }
+
+    function cerrarCarrito() {
+        ocultarElementos();
+        // Mostrar la sección de destinos si es necesario
+        document.getElementById("destinosContainer").style.display = "flex";
+    }
 
     function actualizarCarrito() {
         const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
         verCarritoBtn.style.display = reservas.length ? "block" : "none";
     }
 
+    verCarritoBtn.addEventListener("click", () => {
+        mostrarCarrito();
+    });
+
+    vaciarCarritoBtn.addEventListener("click", () => {
+        vaciarCarrito();
+    });
+
+    cerrarCarritoBtn.addEventListener("click", () => {
+        cerrarCarrito();
+    });
+
+    // Llama a actualizarCarrito() para configurar el botón de ver carrito
     actualizarCarrito();
 });
